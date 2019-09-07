@@ -1,4 +1,4 @@
-# Big Data Pipeline for Stock Analysis
+# SPYglass: Batch and Real-time Financial Data Pipelines
 
 ## Introduction
 
