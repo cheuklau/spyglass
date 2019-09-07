@@ -16,9 +16,9 @@ All APIs are in real-time with the latest data points derived from the current t
 
 ### Data Ingestion
 
-We create custom Kafka Producers that query from Alpha Advantage API and store the raw data into Kafka. There are two types of producers:
-1. Historical producers pull all available daily, weekly and monthly historical stock data (up to 20 years worth), and
-2. Real-time producers pull real-time intraday stock data.
+We create custom [Kafka Producers](https://kafka.apache.org/10/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html) that query from the Alpha Advantage API and store the raw data into Kafka. There are two types of producers:
+1. Historical producers pull daily, weekly and monthly data (up to 20 years worth), and
+2. Real-time producers pull current intraday data.
 
 ### Data Processing
 
@@ -39,12 +39,17 @@ Aggregate metrics will be stored in Postgres and read from a dashboard.
 ## Local Build (MVP)
 
 A demonstration minimum viable product (MVP) can be set up on your local desktop:
+0. Obtain an Alpha Vantage API key
 1. Set up local Kafka and Zookeeper servers:
 ```
 ./kafka/mvp/setup_kafka.sh
 ./kafka/mvp/start_kafka.sh
 ```
-2. Start the test producers (TBD)
+2. Set up local producers:
+```
+./producer/mvp/setup_producer.sh
+./producer/mvp/producer.py <stock symbol> localhost:9092 <API key>
+```
 3. Start the test transformers (TBD)
 4. Start local Druid server (TBD)
 5. Start the dashboard (TBD)
