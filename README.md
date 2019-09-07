@@ -41,9 +41,8 @@ Aggregate metrics will be stored in Postgres and read from a dashboard.
 A demonstration minimum viable product (MVP) can be set up on your local desktop:
 1. Set up local Kafka and Zookeeper servers:
 ```
-cd kafka
-./build_local.sh
-./start_kafka.sh
+./kafka/mvp/setup_kafka.sh
+./kafka/mvp/start_kafka.sh
 ```
 2. Start the test producers (TBD)
 3. Start the test transformers (TBD)
