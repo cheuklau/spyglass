@@ -11,6 +11,7 @@ We use [Alpha Vantage](https://www.alphavantage.co) which provides APIs for acce
 2. Physical and crypto currencies,
 3. Technical indicators, and
 4. Sector performances.
+
 All APIs are in real-time with the latest data points derived from the current trading day. The initial focus will be on stock time-series data.
 
 ### Data Ingestion
