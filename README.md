@@ -39,17 +39,17 @@ Aggregate metrics will be stored in Postgres and read from a dashboard.
 ## Local Build (MVP)
 
 A demonstration minimum viable product (MVP) can be set up on your local desktop:
-0. Obtain an Alpha Vantage API key
-1. Set up local Kafka and Zookeeper servers:
+
+1. Obtain an Alpha Vantage API key
+2. Set up and statrt local Kafka and Zookeeper servers:
 ```
 ./kafka/mvp/setup_kafka.sh
 ./kafka/mvp/start_kafka.sh
 ```
-2. Set up local producers:
+3. Set up and start local Kafka producers:
 ```
 ./producer/mvp/setup_producer.sh
 ./producer/mvp/producer.py <stock symbol> localhost:9092 <API key>
 ```
-3. Start the test transformers (TBD)
-4. Start local Druid server (TBD)
-5. Start the dashboard (TBD)
+4. Setup and start local Faust processors (TBD)
+5. Setup and Start local Druid server (TBD)
