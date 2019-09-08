@@ -54,6 +54,7 @@ cd /path/to/producer/mvp
 ./start_producer.sh <stock symbol> localhost:9092 <api key>
 ```
 Note: This starts up a consumer (not part of the tech stack) to verify messages are being produced and consumed. Messages consumed can be viewed in `consumer.out`.
+
 4. Setup and start local Faust processors (TBD)
 5. Setup and Start local Druid server (TBD)
 6. Shutdown mvp:
