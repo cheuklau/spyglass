@@ -22,11 +22,11 @@ We create custom [Kafka Producers](https://kafka.apache.org/10/javadoc/org/apach
 
 ### Data Processing
 
-We will use [Faust](https://github.com/robinhood/faust) to 
+We will use [Faust](https://github.com/robinhood/faust) to perform streaming and event processing to calculate on-the-fly metrics e.g., [intraday volatility measures](https://eranraviv.com/intraday-volatility-measures/).
 
 ### Real-Time Analytics
 
-We will use Druid to hold real-time data to perform streaming analytics. This will feed real-time dashboards.
+We will use [Druid](https://druid.apache.org/docs/latest/tutorials/index.html) to index data from Kafka. This will allow us to perform real-time querying and display real-time dashboards.
 
 ### Future Work: Batch Processing
 
