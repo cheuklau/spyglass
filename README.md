@@ -22,7 +22,7 @@ We create custom [Kafka Producers](https://kafka.apache.org/10/javadoc/org/apach
 
 ### Data Processing
 
-We will use Kafka Streams to clean and enrich the data. 
+We will use [Faust](https://github.com/robinhood/faust) to 
 
 ### Real-Time Analytics
 
