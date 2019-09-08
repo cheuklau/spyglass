@@ -4,6 +4,7 @@ from kafka import KafkaProducer
 import json
 import urllib
 import time
+import sys
 
 def create_producer(server):
     """Create Kafka producer
@@ -51,15 +52,15 @@ if __name__ == "__main__":
     #     },
     #     ...
     url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=%s&interval=5min&outputsize=compact&apikey=%s' % (stock, apikey)
-    data = json.load(urllib.urlopen(url))["Time Series (5min)"]
+    # data = json.load(urllib.urlopen(url))["Time Series (5min)"]
 
-    for timestamp in data:
+    # for timestamp in data:
 
-        # Add the timestamp to the message
-        data[timestamp]['timestamp'] = timestamp
+    #     # Add the timestamp to the message
+    #     data[timestamp]['timestamp'] = timestamp
 
-        # Send the message
-        producer.send('test-topic-'+stock, data[timestamp])
+    #     # Send the message
+    #     producer.send('test-topic-'+stock, data[timestamp])
 
     # Next populate only most recent data point of intraday trade
     # If this is run in off-hours then data point will be unchanged

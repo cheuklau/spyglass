@@ -19,5 +19,5 @@ if [[ ! $(pip list | grep urllib) ]]; then
   sudo pip install urllib
 fi
 
-echo "INFO: Successfully installed kafka-python"
-exit(0)
+echo "Successfully installed kafka-python"
+exit 0

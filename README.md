@@ -41,15 +41,26 @@ Aggregate metrics will be stored in Postgres and read from a dashboard.
 A demonstration minimum viable product (MVP) can be set up on your local desktop:
 
 1. Obtain an Alpha Vantage API key
-2. Set up and statrt local Kafka and Zookeeper servers:
+2. Set up and start local Kafka and Zookeeper servers:
 ```
-./kafka/mvp/setup_kafka.sh
-./kafka/mvp/start_kafka.sh
+cd /path/to/kafka/mvp
+./setup_kafka.sh
+./start_kafka.sh
 ```
-3. Set up and start local Kafka producers:
+3. Set up and start local Kafka producer:
 ```
-./producer/mvp/setup_producer.sh
-./producer/mvp/producer.py <stock symbol> localhost:9092 <API key>
+cd /path/to/producer/mvp
+./setup_producer.sh
+./start_producer.sh <stock symbol> localhost:9092 <api key>
 ```
+Note: This starts up a consumer (not part of the tech stack) to verify messages are being produced and consumed. Messages consumed can be viewed in `consumer.out`.
 4. Setup and start local Faust processors (TBD)
 5. Setup and Start local Druid server (TBD)
+6. Shutdown mvp:
+```
+cd /path/to/producer/mvp
+./stop_producer.sh
+cd /path/to/kafka/mvp
+./stop_kafka.sh
+```
+Note: The above scripts will clear the Kafka and Zookeeper data directories and Kafka producer and consumer output and logs.

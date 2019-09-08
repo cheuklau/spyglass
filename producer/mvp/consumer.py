@@ -3,6 +3,7 @@
 from kafka import KafkaConsumer
 import json
 import time
+import sys
 
 def create_consumer(topic, server):
     """Create Kafka consumer
@@ -12,7 +13,12 @@ def create_consumer(topic, server):
 
     """
 
-    consumer = KafkaConsumer(topic, value_deserializer=lambda v: json.loads(v.decode('utf-8')),
+    consumer = KafkaConsumer(topic, 
+                            auto_offset_reset='earliest',
+                            enable_auto_commit=True,
+                            auto_commit_interval_ms=5000,
+                            group_id='test',
+                            value_deserializer=lambda v: json.loads(v.decode('utf-8')),
                             bootstrap_servers=server)
 
     return consumer
@@ -25,7 +31,7 @@ if __name__ == "__main__":
     stock = sys.argv[1]
     server = sys.argv[2]
 
-    consumer = create_consumer(server)
+    consumer = create_consumer('test-topic-'+stock, server)
 
     for message in consumer:
 

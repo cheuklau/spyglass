@@ -20,5 +20,5 @@ echo "export PATH=$(PWD)/kafka_2.12-2.0.0/bin:"'${PATH}' >> ~/.bash_profile
 # Source updated bash profile
 source ~/.bash_profile
 
-echo "INFO: Local Kafka has been installed"
+echo "Local Kafka has been installed"
 exit(0)
