@@ -13,5 +13,11 @@ if [[ ! $(pip list | grep kafka-python) ]]; then
   sudo pip install kafka-python
 fi
 
+# Ensure urllib is installed
+if [[ ! $(pip list | grep urllib) ]]; then
+  sudo python -m pip install --upgrade pip setuptools wheel
+  sudo pip install urllib
+fi
+
 echo "INFO: Successfully installed kafka-python"
 exit(0)

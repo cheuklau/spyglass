@@ -8,4 +8,4 @@ Apache Kafka Producers write data to `topics` made up of `partitions`. Kafka Pro
 
 Perform the following:
 1. Install [kafka-python](https://github.com/dpkp/kafka-python) and all dependencies: `./setup_producer.sh`
-2. Start the producer: `./producer.py`
+2. Start the producer: `./producer.py <stock symbol> localhost:9092 <API key>`

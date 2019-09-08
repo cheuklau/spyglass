@@ -7,6 +7,6 @@ Apache Kafka decouples data streams and systems. It is designed to be distribute
 ## Local Build
 
 Perform the following:
-1. Download and setup Kafka binaries: `build_local.sh`.
-2. Start local Kafka and Zookeeper servers: `start_kafka.sh`.
+1. Download and setup Kafka binaries: `./build_local.sh`.
+2. Start local Kafka and Zookeeper servers: `./start_kafka.sh`.
 3. To stop Kafka and Zookeeper servers: `kafka-server-stop.sh && zookeeper-server-stop.sh` 
