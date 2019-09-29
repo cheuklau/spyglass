@@ -8,7 +8,8 @@ tar -xvf kafka_2.12-2.0.0.tgz
 
 # Check Java version
 if [[ ! $(java -version 2>&1 | grep -o '"1.8.*"') ]]; then
-  exit('ERROR: Kafka requires Java version 8')
+  echo "ERROR: Kafka requires Java 8"
+  exit 1
 fi
 
 # Clean up zip file
@@ -16,9 +17,7 @@ rm kafka_2.12-2.0.0.tgz
 
 # Add downloaded binaries to path
 echo "export PATH=$(PWD)/kafka_2.12-2.0.0/bin:"'${PATH}' >> ~/.bash_profile
-
-# Source updated bash profile
 source ~/.bash_profile
 
-echo "Local Kafka has been installed"
-exit(0)
+echo "INFO: Local Kafka has been installed"
+exit 0

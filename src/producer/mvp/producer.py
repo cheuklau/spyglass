@@ -68,17 +68,25 @@ if __name__ == "__main__":
     # If this is run in off-hours then data point will be unchanged
     while True:
 
-        # Poll the API to get a response
-        data = json.load(urllib.urlopen(url))["Time Series (1min)"]
+        try:
 
-        # Return the first timestamp
-        timestamp = next(iter(data))
+            # Poll the API to get a response
+            data = json.load(urllib.urlopen(url))["Time Series (1min)"]
 
-        # Add the timestamp to the message
-        data[timestamp]['timestamp'] = timestamp
+            # Return the first timestamp
+            timestamp = next(iter(data))
 
-        # Send the message
-        producer.send('test-topic-'+stock, data[timestamp])
+            # Add the timestamp to the message
+            data[timestamp]['timestamp'] = timestamp
 
-        # Wait 30 seconds
-        time.sleep(60)
+            # Send the message
+            producer.send('test-topic-'+stock, data[timestamp])
+        
+            print timestamp 
+
+        except:
+
+            exit('Producer failed to poll')
+
+        # Wait 60 seconds
+        time.sleep(10)

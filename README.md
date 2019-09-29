@@ -1,8 +1,8 @@
-# SPYglass: Batch and Real-time Financial Data Pipelines
+# Spyglass: Batch and Real-time Financial Data Pipelines
 
 ## Introduction
 
-## Tech Stack
+## Data Engineering Tech Stack
 
 ### Data Source
 
@@ -36,7 +36,7 @@ Kafka Connect will be used to write historical data into HDFS. Airflow will run 
 
 Aggregate metrics will be stored in Postgres and read from a dashboard.
 
-## Local Build (MVP)
+### Local Build (MVP)
 
 A demonstration minimum viable product (MVP) can be set up on your local desktop:
 
@@ -65,3 +65,26 @@ cd /path/to/kafka/mvp
 ./stop_kafka.sh
 ```
 Note: The above scripts will clear the Kafka and Zookeeper data directories and Kafka producer and consumer output and logs.
+
+## DevOps Tech Stack
+
+### Kops
+
+- Use kops to create Kubernetes cluster on AWS
+- Write output as Terraform for version control
+
+### Docker
+
+- Dockerize each component of pipeline
+
+### Helm
+
+- Write each application as a Helm deployment
+
+### Prometheus
+
+- Add Prometheus operator to cluster to monitor Kubernetes cluster
+
+### Elastic Stack
+
+- Add Elastic Stack to monitor application logs

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 3 ]; then
-  echo "Usage: ./producer.py <stock symbol> <kafka address> <api key>"
+  echo "Usage: ./start_producer.sh <stock symbol> <kafka address> <api key>"
   exit 1
 fi
 
@@ -29,3 +29,4 @@ if [[ ! $(cat consumer.out | grep ConsumerRecord) ]]; then
 else
   echo "Successfully started producer and consumer"
   exit 0
+fi
