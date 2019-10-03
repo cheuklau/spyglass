@@ -1,10 +1,10 @@
 # Spyglass: Batch and Real-time Financial Data Pipelines
 
-## Introduction
+## Section 1 - Introduction
 
-## Data Engineering Tech Stack
+## Section 2 - Data Engineering Tech Stack
 
-### Data Source
+### Section 2.1 - Data Source
 
 We use [Alpha Vantage](https://www.alphavantage.co) which provides APIs for accessing both historical and real-time financial data. Alpha Vantage APIs are grouped into four categories:
 1. Stock time-series data,
@@ -12,79 +12,77 @@ We use [Alpha Vantage](https://www.alphavantage.co) which provides APIs for acce
 3. Technical indicators, and
 4. Sector performances.
 
-All APIs are in real-time with the latest data points derived from the current trading day. The initial focus will be on stock time-series data.
+All APIs are in real-time with the latest data points derived from the current trading day.
 
-### Data Ingestion
+### Section 2.2 - Data Ingestion
 
-We create custom [Kafka Producers](https://kafka.apache.org/10/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html) that query from the Alpha Advantage API and store the raw data into Kafka. There are two types of producers:
-1. Historical producers pull daily, weekly and monthly data (up to 20 years worth), and
-2. Real-time producers pull current intraday data.
+We create custom [Kafka Producers](https://kafka.apache.org/10/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html) that pull real-time financial data from the Alpha Advantage API and store the results in Kafka.
 
-### Data Processing
+### Section 2.3 - Data Processing
 
 We will use [Faust](https://github.com/robinhood/faust) to perform streaming and event processing to calculate on-the-fly metrics e.g., [intraday volatility measures](https://eranraviv.com/intraday-volatility-measures/).
 
-### Real-Time Analytics
+### Section 2.4 - Real-Time Analytics
 
 We will use [Druid](https://druid.apache.org/docs/latest/tutorials/index.html) to index data from Kafka. This will allow us to perform real-time querying and display real-time dashboards.
 
-### Future Work: Batch Processing
+### Section 2.5 - Future Work
 
-Kafka Connect will be used to write historical data into HDFS. Airflow will run daily, weekly and monthly jobs to calculate aggregate metrics.
+#### Section 2.5.1 Batch Processing
 
-### Future Work: Historical Analytics
+Kafka Connect will write historical data into HDFS. Airflow will run daily, weekly and monthly jobs to calculate aggregate metrics. Apply machine learning methods to generate models that can be used in real-time analytics to gain insight into real-time financial data.
 
-Aggregate metrics will be stored in Postgres and read from a dashboard.
+## Section 3 - Local Minimum Viable Product (MVP)
 
-### Local Build (MVP)
-
-A demonstration minimum viable product (MVP) can be set up on your local desktop:
-
+Perform the following steps to set up the local MVP:
 1. Obtain an Alpha Vantage API key
-2. Set up and start local Kafka and Zookeeper servers:
+2. Set up Kafka and Zookeeper:
 ```
-cd /path/to/kafka/mvp
+cd $HOME/src/kafka/mvp
 ./setup_kafka.sh
+```
+3. Start Kafka and Zookeeper:
+```
 ./start_kafka.sh
 ```
-3. Set up and start local Kafka producer:
+4. Set up Kafka producer:
 ```
-cd /path/to/producer/mvp
+cd $HOME/src/producer/mvp
 ./setup_producer.sh
+```
+5. Start the Kafka prodcuer:
+```
 ./start_producer.sh <stock symbol> localhost:9092 <api key>
 ```
-Note: This starts up a consumer (not part of the tech stack) to verify messages are being produced and consumed. Messages consumed can be viewed in `consumer.out`.
+This also starts up a Kafka Consumer to verify messages are being produced. Messages consumed can be viewed in `consumer.out`.
 
-4. Setup and start local Faust processors (TBD)
-5. Setup and start local Druid server (TBD)
-6. Shutdown mvp:
+6. Setup and start local Faust processors (TBD)
+7. Setup and start local Druid server (TBD)
+8. Shutdown mvp:
 ```
-cd /path/to/producer/mvp
-./stop_producer.sh
-cd /path/to/kafka/mvp
-./stop_kafka.sh
+$HOME/src/producer/mvp/stop_producer.sh
+$HOME/src/kafka/mvp/stop_kafka.sh
 ```
-Note: The above scripts will clear the Kafka and Zookeeper data directories and Kafka producer and consumer output and logs.
 
-## DevOps Tech Stack
+## Section 4 - Production DevOps Tech Stack
 
-### Kops
+### Section 4.1 - Kops
 
 - Use kops to create Kubernetes cluster on AWS
 - Write output as Terraform for version control
 
-### Docker
+### Section 4.2 - Docker
 
 - Dockerize each component of pipeline
 
-### Helm
+### Section 4.3 - Helm
 
 - Write each application as a Helm deployment
 
-### Prometheus
+### Section 4.4 - Prometheus
 
 - Add Prometheus operator to cluster to monitor Kubernetes cluster
 
-### Elastic Stack
+### Section 4.5 - Elastic Stack
 
 - Add Elastic Stack to monitor application logs
